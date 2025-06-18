@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Generator</title>
+	<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	
+	<style>
+	html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.container {
+  max-width: 960px;
+}
+
+.pricing-header {
+  max-width: 700px;
+}
+
+.card-deck .card {
+  min-width: 220px;
+}
+
+.border-top { border-top: 1px solid #e5e5e5; }
+.border-bottom { border-bottom: 1px solid #e5e5e5; }
+
+.box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+		
+
+</style>
+</head>
+<body>
+	
+	 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+      <h1>Creative Delivery PDF Creator</h1>
+      <p class="lead">Use this form to generate a one-page PDF that will accompany outgoing audio creative</p>
+    </div>
+	
+    <div class="container">
+		
+      <div class="card-deck row mb-3 text-left">
+        <div class="col-md-2 mb-4">
+        </div>
+        <div class="card col-md-8 mb-4 p-0 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Creative Delivery Form</h4>
+          </div>
+          <div class="card-body">
+           <form id="pdfForm" action="/generate-pdf" method="POST">
+        
+		<label for="audio">Audio (link):</label>
+        <input type="text" id="audio" name="audio" required><br><br>
+		
+		<label for="name">Client:</label>
+        <input type="text" id="name" name="name" required><br><br>
+		
+		<label for="pname">Project Name / Campaign Name:</label>
+        <input type="text" id="pname" name="pname" required><br><br>
+		
+		<label for="version">Version:</label>
+        <input type="number" id="version" name="version" min="0" max="100" required><br><br>
+		
+		<label for="date">Date:</label>
+        <input type="date" id="date" name="date" required><br><br>
+		
+		<label for="message">Additional Information:</label><br>
+        <textarea id="message" name="message" rows="5" cols="50" required></textarea><br><br>
+		
+		<label for="cdname">Creative Director:</label>
+        <input type="text" id="cdname" name="cdname" required><br><br>
+		
+		<label for="producer">Producer:</label>
+        <input type="text" id="producer" name="producer" required><br><br>
+		
+		<label for="writer">Writer:</label>
+        <input type="text" id="writer" name="writer" required><br><br>
+		
+		<label for="acmanager">Account Manager:</label>
+        <input type="text" id="acmanager" name="acmanager" required><br><br>
+        
+        <!--<label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>-->
+        
+        
+
+        <button type="submit" class="btn btn-lg btn-block btn-primary">GENERATE</button>
+    </form>
+          </div>
+        </div>
+        <div class="col-md-2 mb-4">
+        </div>
+      </div>
+
+
+      <footer class="pt-4 my-md-5 pt-md-5 border-top text-center">
+        <div class="row">
+          <div class="col-12 col-md">
+            <small class="d-block mb-3 text-muted"> Studio Resonate &copy; 2025</small>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+
+</body>
+</html>
