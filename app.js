@@ -45,9 +45,15 @@ app.post('/generate-pdf', (req, res) => {
             right: 250
         }
     });
+	
+	let formattedDate = date;
+	if (date && date.includes('-')) {
+		const [year, month, day] = date.split('-');
+		formattedDate = `${month}/${day}/${year}`;
+	}
 
     // Set up response headers for downloading the PDF
-    res.setHeader('Content-disposition', 'attachment; filename=output.pdf');
+    res.setHeader('Content-disposition', 'attachment; filename='+name+'_'+pname+'_'+formattedDate+'_'+version+'.pdf');
     res.setHeader('Content-type', 'application/pdf');   
 
     // Pipe the PDF into the response
@@ -89,7 +95,7 @@ app.post('/generate-pdf', (req, res) => {
 		.font('Helvetica-Bold')
 		.text(`Date:`)
 		.font('Helvetica')
-		.text(`${date}`)
+		.text(`${formattedDate}`)
 		.moveDown()
 		.font('Helvetica-Bold')
 		.text(`Additional Information:`)
