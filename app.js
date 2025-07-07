@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
 
 
 app.post('/generate-pdf', (req, res) => {
-    const { name, pname, email, version, date, message, cdname, producer, writer, acmanager } = req.body;
+    const { audio, password, name, pname, email, version, date, message, cdname, producer, writer, acmanager } = req.body;
 
     // Create a PDF document
     const doc = new PDFDocument({
@@ -71,57 +71,87 @@ app.post('/generate-pdf', (req, res) => {
     });
 	
 	
-    doc.link(985, 370, 980, 150, 'https://google.com');
+    //doc.link(935, 320, 1080, 250, `${audio}`);
 	
     doc.moveDown(15.7);
     
     doc.fontSize(52.3)
-		.fillColor('white')
+		.fillColor('#aeaeae')
 		.font('Helvetica-Bold')
 		.text(`Client:`)
+	    .fillColor('white')
 		.font('Helvetica')
 		.text(`${name}`)
 		.moveDown()
+		.fillColor('#aeaeae')
 		.font('Helvetica-Bold')
 		.text(`Project Name / Campaign Name:`)
 		.font('Helvetica')
+		.fillColor('white')
 		.text(`${pname}`)
 		.moveDown()
+		.fillColor('#aeaeae')
 		.font('Helvetica-Bold')
 		.text(`Version:`)
+		.fillColor('white')
 		.font('Helvetica')
 		.text(`${version}`)
 		.moveDown()
+		.fillColor('#aeaeae')
 		.font('Helvetica-Bold')
 		.text(`Date:`)
+		.fillColor('white')
 		.font('Helvetica')
 		.text(`${formattedDate}`)
 		.moveDown()
+		.fillColor('#aeaeae')
 		.font('Helvetica-Bold')
 		.text(`Additional Information:`)
+		.fillColor('white')
 		.font('Helvetica')
 		.text(`${message}`)
 		.moveDown()
 		.font('Helvetica-Bold')
+		.fillColor('#aeaeae')
 		.text(`Creative Director:`)
+		.fillColor('white')
 		.font('Helvetica')
 		.text(`${cdname}`)
 		.moveDown()
+		.fillColor('#aeaeae')
 		.font('Helvetica-Bold')
 		.text(`Producer:`)
+		.fillColor('white')
 		.font('Helvetica')
 		.text(`${producer}`)
 		.moveDown()
+		.fillColor('#aeaeae')
 		.font('Helvetica-Bold')
 		.text(`Writer:`)
+		.fillColor('white')
 		.font('Helvetica')
 		.text(`${writer}`)
 		.moveDown()
+		.fillColor('#aeaeae')
 		.font('Helvetica-Bold')
 		.text(`Account Manager:`)
+		.fillColor('white')
 		.font('Helvetica')
 		.text(`${acmanager}`)
 		.moveDown();
+	
+	
+	
+	//doc.link(935, 320, 1080, 250, `${audio}`);
+	doc.link(835, 220, 1280, 320, `${audio}`);
+	doc.link(835, 590, 1280, 100, `${audio}`);
+		if (password && password.trim() !== '') {
+		doc.fontSize(35)
+		   .fillColor('white')
+		   .font('Helvetica')
+		   .text(`PASSWORD: ${password}`, 1100, 550);
+	}
+	
     //doc.moveDown();
     //doc.text(`Email: ${email}`);
     //doc.moveDown();
