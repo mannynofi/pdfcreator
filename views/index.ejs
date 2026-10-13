@@ -40,7 +40,7 @@
 	
 	 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
       <h1>Creative Delivery PDF Creator</h1>
-      <p class="lead">Use this form to generate a one-page PDF that will accompany outgoing audio creative</p>
+      <p class="lead">Use this form to generate a one-page PDF that will accompany outgoing audio creative.</p>
     </div>
 	
     <div class="container">
@@ -53,7 +53,7 @@
             <h4 class="my-0 font-weight-normal">Creative Delivery Form</h4>
           </div>
           <div class="card-body">
-           <form id="pdfForm" action="/generate-pdf" method="POST">
+           <form id="pdfForm" action="/generate-pdf" method="POST" accept-charset="UTF-8">
         
 		<label for="audio" class="mb-2">Audio (link):</label>
         <input type="text" class="mb-2" id="audio" name="audio" required><br>
@@ -86,6 +86,15 @@
 		
 		<label for="acmanager">Account Manager:</label>
         <input type="text" id="acmanager" name="acmanager" required><br><br><br>
+			   
+	    <label for="language">Language:</label>
+		<select id="language" name="language" required>
+		  <option value="">-- Select a language --</option>
+		  <option value="English">English</option>
+		  <option value="Spanish">Spanish</option>
+		  <option value="Bilingual">Bilingual</option>
+		  <option value="Spanglish">Spanglish</option>
+		</select><br><br><br>
         
         <!--<label for="email">Email:</label>
         <input type="email" id="email" name="email" required><br><br>-->
@@ -109,7 +118,13 @@
         </div>
       </footer>
     </div>
-    
+ <script>
+  // Get today's date in yyyy-mm-dd format
+  const today = new Date().toISOString().split('T')[0];
+  
+  // Set the value of the date input to today
+  document.getElementById('date').value = today;
+</script>   
 
 </body>
 </html>

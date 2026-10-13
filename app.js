@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
 
 
 app.post('/generate-pdf', (req, res) => {
-    const { audio, password, name, pname, email, version, date, message, cdname, producer, writer, acmanager } = req.body;
+    const { audio, password, name, pname, email, version, date, message, cdname, producer, writer, acmanager, language } = req.body;
 
     // Create a PDF document
     const doc = new PDFDocument({
@@ -71,6 +71,8 @@ app.post('/generate-pdf', (req, res) => {
     });
 	
 	
+	//let messageSafe = message.replace(/ /g, '\u00A0').replace(/\r\n/g, '\n');
+	let messageSafe = message.replace(/\r\n|\r|\u2028|\u2029|\u000B/g, '\n');
     //doc.link(935, 320, 1080, 250, `${audio}`);
 	
     doc.moveDown(15.7);
@@ -109,7 +111,7 @@ app.post('/generate-pdf', (req, res) => {
 		.text(`Additional Information:`)
 		.fillColor('white')
 		.font('Helvetica')
-		.text(`${message}`)
+		.text(`${messageSafe}`)
 		.moveDown()
 		.font('Helvetica-Bold')
 		.fillColor('#aeaeae')
@@ -138,6 +140,13 @@ app.post('/generate-pdf', (req, res) => {
 		.fillColor('white')
 		.font('Helvetica')
 		.text(`${acmanager}`)
+		.moveDown()
+		.fillColor('#aeaeae')
+		.font('Helvetica-Bold')
+		.text(`Language:`)
+		.fillColor('white')
+		.font('Helvetica')
+		.text(`${language}`)
 		.moveDown();
 	
 	
@@ -151,6 +160,10 @@ app.post('/generate-pdf', (req, res) => {
 		   .font('Helvetica')
 		   .text(`PASSWORD: ${password}`, 1100, 550);
 	}
+	doc.link(80, 355, 630, 180, `https://www.siriusxmmedia.com/studio-resonate`);
+	doc.link(80, 3020, 630, 180, `https://www.siriusxmmedia.com/`);
+	doc.link(2093, 3153, 185, 45, `mailto:SR-Questions@pandora.com`);
+	doc.link(2280, 3153, 185, 45, `https://studioresonate.com/`);
 	
     //doc.moveDown();
     //doc.text(`Email: ${email}`);
